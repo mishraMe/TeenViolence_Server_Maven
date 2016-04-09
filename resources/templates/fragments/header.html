@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extrasspringsecurity4">
+
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<link href="../../static/css/mmml.css" th:href="@{css/mmml.css}"
+	rel="stylesheet" media="screen" />
+</head>
+<body>
+	<div class="container">
+		<div th:fragment="header">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<ul class="nav navbar-nav">
+							<li><a class="navbar-brand" href="#" th:href="@{/}">Home</a></li>
+							<li><a href="#" th:href="@{/showProfile}">Profile</a></li>
+							<li><a href="#" th:href="@{/showPlayLists}">PlayLists</a></li>
+							<li><a href="#" th:href="@{/showSearchSongs}">Search Songs</a></li>
+							<li><a href="#" th:href="@{/logout}">Logout</a></li>
+							<h3 th:inline="text">Hello [[${session.username}]]!</h3>	
+							<!-- Admin Commands -->
+							<div th:if="${session.role} =='ADMIN'">
+								<li><a href="#" th:href="@{/showSearchSongs}">Review Comments</a></li>
+								<li><a href="#" th:href="@{/logout}">Upload Songs</a></li>
+							</div>
+						</ul>
+					</div>
+					<div>
+						<!-- <div>
+							Logged:<b sec:authentication="name" /> with roles <span sec:authentication="authorities" /> 
+							Logged User: <span sec:authentication="name">Bob</span> Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+							<form th:action="@{/logout}" method="post" style="display: inlineblock"> <input type="submit" value="Sign Out" /> </form>
+							<hr />
+						</div> -->
+						<div>
+							<form th:action="@{/logout}" method="post">
+								<input type="submit" value="Sign Out" />
+							</form>
+						</div>
+					</div>
+					<section layout:fragment="content">
+					</section>
+				</div>
+			</nav>
+		</div>
+	</div>
+</body>
+</html>

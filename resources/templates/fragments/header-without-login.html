@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extrasspringsecurity4">
+
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<link href="../../static/css/mmml.css" th:href="@{css/mmml.css}"
+	rel="stylesheet" media="screen" />
+</head>
+<body>
+	<div class="container">
+		<div th:fragment="header">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#" th:href="@{/}"></a>
+						<ul class="nav navbar-nav">
+							<li><a class="navbar-brand" href="#" th:href="@{/}">Home</a></li>
+							<li><a href="#" th:href="@{/showRegistrationForm}">Register</a></li>
+							<li><a href="#" th:href="@{/showLoginForm}">Login</a></li>
+							<li><a href="#" th:href="@{/becomeUser}">Act As User</a></li>
+							<li><a href="#" th:href="@{/actAsAdministrator}">Act As Administrator</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+</body>
+</html>

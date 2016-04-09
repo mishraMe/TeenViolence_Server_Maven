@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<title>CS 5200 Project: Music Library</title>
+
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <h1>Song File Upload</h1>
+</head>
+<body>
+	<div class="container">
+		<!--/*/ <th:block th:include="fragments/header-without-login :: header"></th:block> /*/-->
+		<form action="#" th:action="@{/admin/upload}" th:object="${audioFile}" method="post">
+			<input type="text" id="file" name="file" th:value="*{file}" />
+			<input type="text" id="file" name="file" th:value="*{file}" />
+			<input type="text" id="file" name="file" th:value="*{file}" />
+            <div class="row"><button type="submit" value="submit" class="btn btn-default">Submit</button></div>
+		</form>
+    <p th:if="${loginError}">Wrong user or password</p>
+   <!--  <form th:action="@{/j_spring_security_check}" method="post">
+      <label for="j_username">Username</label>: <input type="text" id="j_username" name="j_username" /> <br />
+      <label for="j_password">Password</label>: <input type="password" id="j_password" name="j_password" /> <br />
+      <input type="submit" value="Log in" />
+    </form> -->
+	</div>
+</body>
+</html>

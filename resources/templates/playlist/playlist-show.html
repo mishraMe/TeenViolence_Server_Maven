@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>CS 5200 Project: Music Library</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(playList.songs)}">
+        <h2>Play List</h2>
+        <table class="table table-striped">
+             <td th:text="*{playListId}"><a href="/playList/*{playListId}">Id</a></td>
+             <td th:text="*{playListName}">Play List Name</td>
+             <td><a th:href="${'/playList/play/' + playListId}">Play</a></td>
+             <td><a th:href="${/playList/delete/' + playListId}">Delete</a></td>
+             <td><a th:href="${/playList/delete/' + playListId}">Edit</a></td>
+             <tr th:each="song : ${playList.songs}">
+                <td th:text="${song.songId}"><a href="/song/${song.songId}">Id</a></td>
+                <td th:text="${song.name}">Song Name</td>
+                <td th:text="${song.album}">descirption</td>
+                <td th:text="${song.releaseDate}">price</td>
+                <td><a th:href="${ '/song/view' + product.id}">View</a></td>
+                <td><a th:href="${'/song/deleteFromPlaylist/' + playList.playListId + song}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

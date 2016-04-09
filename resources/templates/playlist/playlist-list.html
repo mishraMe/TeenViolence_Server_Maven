@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>CS 5200 Project: Music Library</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(playLists)}">
+        <h2>Play Lists</h2>
+ 		<table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="pl : ${playLists}">
+                <td th:text="${pl.playListId}"><a href="/playList/${pl.playListId}">Id</a></td>
+                <td th:text="${pl.playListName}">PlayList Name</td>
+                <td><a th:href="${ '/playList/view/' + pl.playListId}">View</a></td>
+                <td><a th:href="${'/playList/edit/' + pl.playListId}">Edit</a></td>
+                <td><a th:href="${'/playList/delete/' + pl.playListId}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+   	<form class="form-horizontal" th:object="${playList}" th:action="@{/addPlayList}" method="post">
+            	<input type="hidden" th:field="*{playListId}"/>
+	            <div class="form-group"> 
+	            	<label class="col-sm-2 control-label">New PlayList</label> <div class="col-sm-10"> <input type="text" class="form-control" th:field="*{playListName}"/></div> </div>
+	            <div class="row"> <button type="submit" class="btn btn-default">Add New PlayList</button> </div>
+        	</form>
+	</div>
+</div>
+
+</body>
+</html>

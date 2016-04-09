@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>CS 5200 Project: Music Library</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(songs)}">
+        <h2>Songs Search Results</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>SongId</th>
+                <th>Song Name</th>
+                <th>Release Date</th>
+                <th>Album</th>
+                <th>Language</th>
+                <th>Play Audio</th>
+                <th>Play Video</th>
+                <th>View</th>
+                <th th:if="${session.role}=='ADMIN'">Edit Song</th>
+                <th th:if="${session.role}=='ADMIN'">Upload Song</th>
+                <th th:if="${session.role}=='ADMIN'">Delete Song</th>
+                <th>Review</th>
+                <th th:if="${session.role}=='ADMIN'">Censor</th>
+            </tr>
+            <tr th:each="song : ${songs}">
+                <td th:text="${song.songId}"><a href="/song/${song.id}">Id</a></td>
+                <td th:text="${song.songName}">Name</td>
+                <td th:text="${song.releaseDate}">Release Date</td>
+                <td th:text="${song.album}">Album</td>
+                <td th:text="${song.language}">Description</td>
+                <td><a th:href="${'/song/playAudio/' + song.songId}">Play Song</a></td>
+                <td><a th:href="${'/song/playVideo/' + song.songId}">Play Video</a></td>
+                <td><a th:href="${'/song/view/' + song.songId}">View</a></td>
+				<td th:if="${session.role} =='ADMIN'"><a th:href="${'/admin/song/edit/' + song.songId}">Edit</a></td>
+				<td th:if="${session.role} =='ADMIN'"><a th:href="${'/admin/song/upload/' + song.songId}">Upload</a></td>
+				<td th:if="${session.role} =='ADMIN'"><a th:href="${'/admin/song/delete/' + song.songId}">Delete</a></td>
+                <!-- <td><a th:href="${'/song/lyrics/' + song.songId}">Lyrics</a></td> -->
+                <td><a th:href="${'/review/edit/' + song.songId}">Review</a></td>
+				<td th:if="${session.role} =='ADMIN'"><a th:href="${'/admin/review/sensor' + song.songId}">Censor</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

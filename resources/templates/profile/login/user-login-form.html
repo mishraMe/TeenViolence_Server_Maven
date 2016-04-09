@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<title>CS 5200 Project: Music Library</title>
+
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <h1>Login page</h1>
+</head>
+<body>
+	<div class="container">
+		<!--/*/ <th:block th:include="fragments/header-without-login :: header"></th:block> /*/-->
+		<div th:if="${param.error}">Invalid username and password.</div>
+		<div th:if="${param.logout}">You have been logged out.</div>
+		
+		<form action="#" th:action="@{/loginUser}" th:object="${userLogin}" method="post">
+			<input type="text" id="userName" name="userName" th:value="*{userName}" />
+			<input type="text" id="userPassword" name="userPassword" th:value="*{userPassword}" />
+            <div class="row"><button type="submit" value="submit" class="btn btn-default">Submit</button></div>
+		</form>
+    <p th:if="${loginError}">Wrong user or password</p>
+   <!--  <form th:action="@{/j_spring_security_check}" method="post">
+      <label for="j_username">Username</label>: <input type="text" id="j_username" name="j_username" /> <br />
+      <label for="j_password">Password</label>: <input type="password" id="j_password" name="j_password" /> <br />
+      <input type="submit" value="Log in" />
+    </form> -->
+	</div>
+</body>
+</html>
